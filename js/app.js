@@ -10,8 +10,8 @@ var config = {
 
 var player = {
   height: 20,
-  x: 20,
-  width: 20
+  width: 20,
+  x: 20
 };
 
 function init() {
@@ -29,7 +29,7 @@ function worldInit(worldDom, world) {
 
 function playerInit(playerDom, config, player) {
   playerDom.setAttribute('height', player.height);
+  playerDom.setAttribute('width', player.width);
   playerDom.setAttribute('x', player.x);
   playerDom.setAttribute('y', config.world.height - config.floor.height - player.height);
-  playerDom.setAttribute('width', player.width);
 }
