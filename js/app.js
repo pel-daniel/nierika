@@ -10,8 +10,14 @@ var config = {
 };
 
 var player = {
+  changeDirection: function() {
+    this._direction *= -1;
+  },
   dom: document.getElementById('player'),
   height: 20,
+  step: function() {
+    this._x += this._stepSize * this._direction;
+  },
   width: 20,
   x: function() {
     return this._x;
@@ -19,6 +25,8 @@ var player = {
   y: function() {
     return this._y - player.height;
   },
+  _direction: 1,
+  _stepSize: 3,
   _x: 0,
   _y: config.world.height - config.floor.height
 };
@@ -48,9 +56,10 @@ function drawPlayer(player) {
 }
 
 function gameLoop() {
-  if(player.x() < config.world.width - player.width) {
-    player._x += 3;
-
-    drawPlayer(player);
+  if(player.x() > config.world.width - player.width || player.x() < 0) {
+    player.changeDirection();
   }
+
+  player.step();
+  drawPlayer(player);
 }
