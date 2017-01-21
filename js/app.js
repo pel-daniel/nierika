@@ -3,33 +3,54 @@ var config = {
     height: 20
   },
   world: {
+    dom: document.getElementById('world'),
     height: 500,
     width: 500
   }
 };
 
 var player = {
+  dom: document.getElementById('player'),
   height: 20,
   width: 20,
-  x: 20
+  x: function() {
+    return this._x;
+  },
+  y: function() {
+    return this._y - player.height;
+  },
+  _x: 0,
+  _y: config.world.height - config.floor.height
 };
 
 function init() {
-  var worldDom = document.getElementById('world');
-  var playerDom = document.getElementById('player');
+  worldInit(config.world);
+  playerInit(player);
 
-  worldInit(worldDom, config.world);
-  playerInit(playerDom, config, player);
+  setInterval(gameLoop, 1000/70);
 }
 
-function worldInit(worldDom, world) {
-  worldDom.setAttribute('height', world.height);
-  worldDom.setAttribute('width', world.width);
+function worldInit(world) {
+  world.dom.setAttribute('height', world.height);
+  world.dom.setAttribute('width', world.width);
 }
 
-function playerInit(playerDom, config, player) {
-  playerDom.setAttribute('height', player.height);
-  playerDom.setAttribute('width', player.width);
-  playerDom.setAttribute('x', player.x);
-  playerDom.setAttribute('y', config.world.height - config.floor.height - player.height);
+function playerInit(player) {
+  player.dom.setAttribute('height', player.height);
+  player.dom.setAttribute('width', player.width);
+
+  drawPlayer(player);
+}
+
+function drawPlayer(player) {
+  player.dom.setAttribute('x', player.x());
+  player.dom.setAttribute('y', player.y());
+}
+
+function gameLoop() {
+  if(player.x() < config.world.width - player.width) {
+    player._x += 3;
+
+    drawPlayer(player);
+  }
 }
