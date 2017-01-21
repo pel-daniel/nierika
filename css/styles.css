@@ -1,0 +1,12 @@
+html, body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#world {
+  background-color: tomato;
+  display: block;
+  margin: 0 auto;
+}
