@@ -1,17 +1,20 @@
+var worldHeight = 500;
+var floorHeight = 20;
+
 var config = {
-  floor: {
-    height: 20
-  },
   world: {
-    dom: document.getElementById('world'),
-    height: 500,
     init: function() {
-      this.dom.setAttribute('height', this.height);
-      this.dom.setAttribute('width', this.width);
+      this._dom.setAttribute('height', this._height);
+      this._dom.setAttribute('width', this._width);
 
       player.init();
     },
-    width: 500
+    width: function() {
+      return this._width;
+    },
+    _dom: document.getElementById('world'),
+    _height: worldHeight,
+    _width: 500
   }
 };
 
@@ -26,7 +29,7 @@ var player = {
   step: function(world) {
     this._x += this._stepSize * this._direction;
 
-    if(this.x() > world.width - this._width || this.x() < 0) {
+    if(this.x() > world.width() - this._width || this.x() < 0) {
       this._changeDirection();
     }
     this._draw();
@@ -51,7 +54,7 @@ var player = {
   _stepSize: 3,
   _width: 20,
   _x: 0,
-  _y: config.world.height - config.floor.height
+  _y: worldHeight - floorHeight
 };
 
 function init() {
