@@ -55,7 +55,7 @@ var config = {
     _dom: document.getElementById('portal'),
     _height: 80
   },
-  portal_shadow: {
+  portalShadow: {
     init: function() {
       var self = this;
       this._dom.setAttribute('width', self._width);
@@ -91,7 +91,8 @@ var player = {
     config.portals.init();
     config.floors.init();
     config.world.init();
-    config.portal_shadow.init();
+    config.portalShadow.init();
+
     this._draw();
   },
   step: function(config) {
