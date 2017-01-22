@@ -48,11 +48,15 @@ var player = {
     config.portal.init();
     this._draw();
   },
-  step: function(world) {
+  step: function(config) {
     this._x += this._stepSize * this._direction;
 
-    if(this.x() > world.width() - this._width || this.x() < 0) {
+    if(this.x() > config.world.width() - this._width || this.x() < 0) {
       this._changeDirection();
+    }
+
+    if(Math.abs(this.x() - config.portal.in.x) < this._stepSize) {
+      this._x = config.portal.out.x;
     }
     this._draw();
   },
@@ -86,5 +90,5 @@ function init() {
 }
 
 function gameLoop() {
-  player.step(config.world);
+  player.step(config);
 }
