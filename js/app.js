@@ -5,6 +5,10 @@ var config = {
   world: {
     dom: document.getElementById('world'),
     height: 500,
+    init: function() {
+      this.dom.setAttribute('height', this.height);
+      this.dom.setAttribute('width', this.width);
+    },
     width: 500
   }
 };
@@ -32,15 +36,10 @@ var player = {
 };
 
 function init() {
-  worldInit(config.world);
+  config.world.init();
   playerInit(player);
 
   setInterval(gameLoop, 1000/70);
-}
-
-function worldInit(world) {
-  world.dom.setAttribute('height', world.height);
-  world.dom.setAttribute('width', world.width);
 }
 
 function playerInit(player) {
