@@ -1,10 +1,23 @@
-var floorHeight = 20;
+var floorHeight = 15;
 var svg = document.getElementById('world');
 var worldHeight = 500;
 
 var initHeigh = worldHeight - floorHeight;
 
 var config = {
+  floor: {
+    init: function() {
+      this._dom.setAttribute('height', this._height);
+      this._dom.setAttribute('width', this._width);
+      this._dom.setAttribute('x', this._x);
+      this._dom.setAttribute('y', this._y - this._height);
+    },
+    _dom: document.getElementById('floor'),
+    _height: 34,
+    _width: 1020,
+    _x: 0,
+    _y: worldHeight
+  },
   portal: {
     in: {
       x: 430,
@@ -47,8 +60,9 @@ var player = {
     this._dom.setAttribute('height', this._height);
     this._dom.setAttribute('width', this._width);
 
-    config.world.init();
+    config.floor.init();
     config.portal.init();
+    config.world.init();
     this._draw();
   },
   step: function(config) {
