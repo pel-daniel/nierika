@@ -25,7 +25,7 @@ var config = {
       y: initHeigh
     },
     _dom: document.getElementById('portal'),
-    _height: 78
+    _height: 80
   },
   world: {
     init: function() {
