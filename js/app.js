@@ -5,18 +5,29 @@ var worldHeight = 500;
 var initHeigh = worldHeight - floorHeight;
 
 var config = {
-  floor: {
+  floors: {
     init: function() {
-      this._dom.setAttribute('height', this._height);
-      this._dom.setAttribute('width', this._width);
-      this._dom.setAttribute('x', this._x);
-      this._dom.setAttribute('y', this._y - this._height);
+      var self = this;
+
+      self.bBoxes.forEach(function(box) {
+        var boxDom = self._dom.cloneNode();
+
+        boxDom.classList = [];
+        boxDom.setAttribute('height', box._height);
+        boxDom.setAttribute('width', box._width);
+        boxDom.setAttribute('x', box._x);
+        boxDom.setAttribute('y', box._y - box._height);
+
+        svg.prepend(boxDom);
+      });
     },
     _dom: document.getElementById('floor'),
     _height: 34,
-    _width: 1020,
-    _x: 0,
-    _y: worldHeight
+    bBoxes: [
+      { _height: 34, _width: 1020, _x: 0, _y: worldHeight },
+      { _height: 34, _width: 400, _x: 0, _y: worldHeight - 100 },
+      { _height: 34, _width: 300, _x: 50, _y: worldHeight - 250 }
+    ],
   },
   portal: {
     in: {
@@ -31,7 +42,7 @@ var config = {
       outDom.setAttribute('x', this.out.x);
       outDom.setAttribute('y', this.out.y - this._height);
 
-      svg.appendChild(outDom);
+      svg.prepend(outDom);
     },
     out: {
       x: 10,
@@ -60,8 +71,8 @@ var player = {
     this._dom.setAttribute('height', this._height);
     this._dom.setAttribute('width', this._width);
 
-    config.floor.init();
     config.portal.init();
+    config.floors.init();
     config.world.init();
     this._draw();
   },
