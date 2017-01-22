@@ -35,7 +35,7 @@ var config = {
     },
     out: {
       x: 10,
-      y: initHeigh
+      y: initHeigh - 100
     },
     _dom: document.getElementById('portal'),
     _height: 80
@@ -78,6 +78,8 @@ var player = {
       this._x = config.portal.out.x;
       this._y = config.portal.out.y;
     }
+
+    this._dom.setAttribute('xlink:href', this._filename());
     this._draw();
   },
   x: function() {
@@ -95,6 +97,11 @@ var player = {
   _draw: function() {
     this._dom.setAttribute('x', this.x());
     this._dom.setAttribute('y', this.y() - this._height);
+  },
+  _filename: function() {
+    return 'images/player/running/player' +
+      Math.max(Math.floor(this.x() % 200 / 20) + 1, 1) +
+      '.svg';
   },
   _height: 50,
   _stepSize: 3,
