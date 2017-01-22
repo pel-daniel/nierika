@@ -26,7 +26,7 @@ var config = {
     bBoxes: [
       { _height: 34, _width: 1020, _x: 0, _y: worldHeight },
       { _height: 34, _width: 300, _x: 0, _y: worldHeight - 100 },
-      { _height: 34, _width: 250, _x: 80, _y: worldHeight - 250 }
+      { _height: 34, _width: 250, _x: 250, _y: worldHeight - 250 }
     ],
   },
   portals: {
@@ -50,7 +50,7 @@ var config = {
     },
     bBoxes: [
       { in : { x: 430,  y: initHeigh }, out : { x : 10, y: initHeigh - 100 } },
-      { in : { x: 230,  y: initHeigh - 100 }, out : { x : 75, y: initHeigh - 250 } }
+      { in : { x: 230,  y: initHeigh - 100 }, out : { x : 250, y: initHeigh - 250 } }
     ],
     _dom: document.getElementById('portal'),
     _height: 80
@@ -70,12 +70,17 @@ var config = {
   },
   world: {
     init: function() {
+      var bgDom = this._bgDom.cloneNode();
+      bgDom.classList = [];
+      svg.prepend(bgDom);
+
       this._dom.setAttribute('height', this._height);
       this._dom.setAttribute('width', this._width);
     },
     width: function() {
       return this._width;
     },
+    _bgDom: document.getElementById('background'),
     _dom: document.getElementById('world'),
     _height: worldHeight,
     _width: 500
