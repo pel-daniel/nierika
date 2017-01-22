@@ -58,8 +58,11 @@ var player = {
       this._changeDirection();
     }
 
-    if(Math.abs(this.x() - config.portal.in.x) < this._stepSize) {
+    if(Math.abs(this.x() - config.portal.in.x) < this._stepSize &&
+       Math.abs(this.y() - config.portal.in.y) < this._stepSize
+    ) {
       this._x = config.portal.out.x;
+      this._y = config.portal.out.y;
     }
     this._draw();
   },
@@ -67,7 +70,7 @@ var player = {
     return this._x;
   },
   y: function() {
-    return this._y - this._height;
+    return this._y;
   },
   // privates
   _changeDirection: function() {
@@ -77,7 +80,7 @@ var player = {
   _dom: document.getElementById('player'),
   _draw: function() {
     this._dom.setAttribute('x', this.x());
-    this._dom.setAttribute('y', this.y());
+    this._dom.setAttribute('y', this.y() - this._height);
   },
   _height: 50,
   _stepSize: 3,
