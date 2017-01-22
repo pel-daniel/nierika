@@ -8,57 +8,58 @@ var config = {
     init: function() {
       this.dom.setAttribute('height', this.height);
       this.dom.setAttribute('width', this.width);
+
+      player.init();
     },
     width: 500
   }
 };
 
 var player = {
-  changeDirection: function() {
-    this._direction *= -1;
+  // public API
+  init: function() {
+    this._dom.setAttribute('height', this._height);
+    this._dom.setAttribute('width', this._width);
+
+    this._draw();
   },
-  dom: document.getElementById('player'),
-  height: 20,
-  step: function() {
+  step: function(world) {
     this._x += this._stepSize * this._direction;
+
+    if(this.x() > world.width - this._width || this.x() < 0) {
+      this._changeDirection();
+    }
+    this._draw();
   },
-  width: 20,
   x: function() {
     return this._x;
   },
   y: function() {
-    return this._y - player.height;
+    return this._y - this._height;
+  },
+  // privates
+  _changeDirection: function() {
+    this._direction *= -1;
   },
   _direction: 1,
+  _dom: document.getElementById('player'),
+  _draw: function() {
+    this._dom.setAttribute('x', this.x());
+    this._dom.setAttribute('y', this.y());
+  },
+  _height: 20,
   _stepSize: 3,
+  _width: 20,
   _x: 0,
   _y: config.world.height - config.floor.height
 };
 
 function init() {
   config.world.init();
-  playerInit(player);
 
   setInterval(gameLoop, 1000/70);
 }
 
-function playerInit(player) {
-  player.dom.setAttribute('height', player.height);
-  player.dom.setAttribute('width', player.width);
-
-  drawPlayer(player);
-}
-
-function drawPlayer(player) {
-  player.dom.setAttribute('x', player.x());
-  player.dom.setAttribute('y', player.y());
-}
-
 function gameLoop() {
-  if(player.x() > config.world.width - player.width || player.x() < 0) {
-    player.changeDirection();
-  }
-
-  player.step();
-  drawPlayer(player);
+  player.step(config.world);
 }
