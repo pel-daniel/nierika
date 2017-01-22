@@ -1,13 +1,33 @@
-var worldHeight = 500;
 var floorHeight = 20;
+var svg = document.getElementById('world');
+var worldHeight = 500;
 
 var config = {
+  portal: {
+    in: {
+      x: 430,
+      y: 400
+    },
+    init: function() {
+      this._dom.setAttribute('x', this.in.x);
+      this._dom.setAttribute('y', this.in.y);
+
+      var outDom = this._dom.cloneNode();
+      outDom.setAttribute('x', this.out.x);
+      outDom.setAttribute('y', this.out.y);
+
+      svg.appendChild(outDom);
+    },
+    out: {
+      x: 10,
+      y: 400
+    },
+    _dom: document.getElementById('portal')
+  },
   world: {
     init: function() {
       this._dom.setAttribute('height', this._height);
       this._dom.setAttribute('width', this._width);
-
-      player.init();
     },
     width: function() {
       return this._width;
@@ -24,6 +44,8 @@ var player = {
     this._dom.setAttribute('height', this._height);
     this._dom.setAttribute('width', this._width);
 
+    config.world.init();
+    config.portal.init();
     this._draw();
   },
   step: function(world) {
@@ -50,15 +72,15 @@ var player = {
     this._dom.setAttribute('x', this.x());
     this._dom.setAttribute('y', this.y());
   },
-  _height: 20,
+  _height: 50,
   _stepSize: 3,
-  _width: 20,
+  _width: 50,
   _x: 0,
   _y: worldHeight - floorHeight
 };
 
 function init() {
-  config.world.init();
+  player.init();
 
   setInterval(gameLoop, 1000/70);
 }
