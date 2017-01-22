@@ -20,10 +20,17 @@
 <path style="fill:#FFC100;" d="M50.2,48.7c0,13.4-10.8,24.2-24.2,24.2V24.5C39.4,24.5,50.2,35.3,50.2,48.7z"/>
 <path style="fill:#FF7700;" d="M46.9,48.5c0,11.5-9.4,20.9-20.9,20.9V27.6C37.6,27.6,46.9,36.9,46.9,48.5z"/>
 <circle style="fill:#004CA3;" cx="25.7" cy="48.3" r="16.9"/>
-<circle style="fill:#170F16;" cx="25.9" cy="49.3" r="4.6"/>
-<circle style="fill:#170F16;" cx="25.9" cy="38.3" r="2.3"/>
-<circle style="fill:#170F16;" cx="36.9" cy="44.8" r="2.3"/>
-<circle style="fill:#170F16;" cx="14" cy="44.8" r="2.3"/>
-<circle style="fill:#170F16;" cx="18.6" cy="58.5" r="2.3"/>
-<circle style="fill:#170F16;" cx="32.8" cy="58.5" r="2.3"/>
+<g stroke="black">
+	<circle style="fill:#170F16;" cx="25.9" cy="49.3" r="4.6"/>
+	<circle style="fill:#170F16;" cx="25.9" cy="38.3" r="2.3"/>
+	<circle style="fill:#170F16;" cx="36.9" cy="44.8" r="2.3"/>
+	<circle style="fill:#170F16;" cx="14" cy="44.8" r="2.3"/>
+	<circle style="fill:#170F16;" cx="18.6" cy="58.5" r="2.3"/>
+	<circle style="fill:#170F16;" cx="32.8" cy="58.5" r="2.3"/>
+	<animateTransform attributeType="xml" attributeName="transform" type="rotate"
+		from="0 27 47.9"
+		to="360 27 47.9"
+		begin="0s"
+		repeatCount="indefinite" dur="0.75s" additive="sum" />
+</g>
 </svg>
