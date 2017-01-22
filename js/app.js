@@ -100,7 +100,7 @@ var player = {
   },
   _filename: function() {
     return 'images/player/running/player' +
-      Math.max(Math.floor(this.x() % 200 / 20) + 1, 1) +
+      (Math.max(Math.floor(this.x() % 200 / 20) + 1, 1) * this._direction) +
       '.svg';
   },
   _height: 50,
