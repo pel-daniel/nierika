@@ -29,25 +29,29 @@ var config = {
       { _height: 34, _width: 250, _x: 80, _y: worldHeight - 250 }
     ],
   },
-  portal: {
-    in: {
-      x: 430,
-      y: initHeigh
-    },
+  portals: {
     init: function() {
-      this._dom.setAttribute('x', this.in.x);
-      this._dom.setAttribute('y', this.in.y - this._height);
+      var self = this;
 
-      var outDom = this._dom.cloneNode();
-      outDom.setAttribute('x', this.out.x);
-      outDom.setAttribute('y', this.out.y - this._height);
+      self.bBoxes.forEach(function(portal) {
 
-      svg.prepend(outDom);
+        var inDom = self._dom.cloneNode();
+        inDom.classList = [];
+        inDom.setAttribute('x', portal.in.x);
+        inDom.setAttribute('y', portal.in.y - self._height);
+        svg.prepend(inDom);
+
+        var outDom = self._dom.cloneNode();
+        outDom.classList = [];
+        outDom.setAttribute('x', portal.out.x);
+        outDom.setAttribute('y', portal.out.y - self._height);
+        svg.prepend(outDom);
+      });
     },
-    out: {
-      x: 10,
-      y: initHeigh - 100
-    },
+    bBoxes: [
+      { in : { x: 430,  y: initHeigh }, out : { x : 10, y: initHeigh - 100 } },
+      { in : { x: 230,  y: initHeigh - 100 }, out : { x : 75, y: initHeigh - 250 } }
+    ],
     _dom: document.getElementById('portal'),
     _height: 80
   },
@@ -58,7 +62,7 @@ var config = {
 
       svg.onmousemove = function(e) {
         self._dom.setAttribute('x', e.offsetX - (self._width / 2));
-        self._dom.setAttribute('y', initHeigh - 100);
+        self._dom.setAttribute('y', initHeigh);
       };
     },
     _dom: document.getElementById('portal-shadow'),
@@ -84,28 +88,31 @@ var player = {
     this._dom.setAttribute('height', this._height);
     this._dom.setAttribute('width', this._width);
 
-    config.portal.init();
+    config.portals.init();
     config.floors.init();
     config.world.init();
     config.portal_shadow.init();
     this._draw();
   },
   step: function(config) {
-    this._x += this._stepSize * this._direction;
+    var self = this;
+    self._x += self._stepSize * self._direction;
 
-    if(this.x() > config.world.width() - this._width || this.x() < 0) {
-      this._changeDirection();
+    if(self.x() > config.world.width() - self._width || self.x() < 0) {
+      self._changeDirection();
     }
 
-    if(Math.abs(this.x() - config.portal.in.x) < this._stepSize &&
-       Math.abs(this.y() - config.portal.in.y) < this._stepSize
-    ) {
-      this._x = config.portal.out.x;
-      this._y = config.portal.out.y;
-    }
+    config.portals.bBoxes.forEach(function(portal) {
+      if(Math.abs(self.x() - portal.in.x) < self._stepSize &&
+         Math.abs(self.y() - portal.in.y) < self._stepSize
+      ) {
+        self._x = portal.out.x;
+        self._y = portal.out.y;
+      }
+    });
 
-    this._dom.setAttribute('xlink:href', this._filename());
-    this._draw();
+    self._dom.setAttribute('xlink:href', self._filename());
+    self._draw();
   },
   x: function() {
     return this._x;
