@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="57px" height="80px" viewBox="-2.3 -0.6 57 80"
+	 style="overflow:visible;enable-background:new -2.3 -0.6 57 80;" xml:space="preserve">
+<defs>
+</defs>
+<path style="fill:#FFBF31;" d="M27.6,77.4c0,0.5-0.7,0.9-1.6,0.9l0,0c-0.9,0-1.6-0.4-1.6-0.9V0.9c0-0.5,0.7-0.9,1.6-0.9l0,0
+	c0.9,0,1.6,0.4,1.6,0.9V77.4z"/>
+<path style="fill:#FFBF31;" d="M13.7,14.8c-0.2,0-0.3-0.7-0.3-1.6l0,0c0-0.9,0.1-1.6,0.3-1.6H38c0.2,0,0.3,0.7,0.3,1.6l0,0
+	c0,0.9-0.1,1.6-0.3,1.6H13.7z"/>
+<circle style="fill:#4CFF1A;" cx="25.7" cy="48.9" r="25.7"/>
+<circle style="fill:#FFC100;" cx="25.7" cy="48.7" r="24.2"/>
+<circle style="fill:#FF7700;" cx="25.7" cy="48.5" r="20.9"/>
+<path style="fill:#4CFF1A;" d="M51.7,49c0,14.2-11.5,25.7-25.7,25.7V23.3C40.2,23.3,51.7,34.8,51.7,49z"/>
+<path style="fill:#FFC100;" d="M50.2,48.9c0,13.4-10.8,24.2-24.2,24.2V24.7C39.4,24.7,50.2,35.5,50.2,48.9z"/>
+<path style="fill:#FF7700;" d="M46.9,48.6c0,11.5-9.4,20.9-20.9,20.9V27.7C37.6,27.7,46.9,37.1,46.9,48.6z"/>
+<circle style="fill:#004D3E;" cx="25.7" cy="48.5" r="16.9"/>
+<g stroke="#F5DA07">
+  <circle style="fill:#F5DA07;" cx="25.1" cy="49.3" r="4.6"/>
+  <circle style="fill:#F5DA07;" cx="32.9" cy="41.6" r="2.3"/>
+  <circle style="fill:#F5DA07;" cx="36.1" cy="53.9" r="2.3"/>
+  <circle style="fill:#F5DA07;" cx="20" cy="37.7" r="2.3"/>
+  <circle style="fill:#F5DA07;" cx="13.5" cy="50.6" r="2.3"/>
+  <circle style="fill:#F5DA07;" cx="23.5" cy="60.7" r="2.3"/>
+	<animateTransform attributeType="xml" attributeName="transform" type="rotate"
+		from="0 27 47.9"
+		to="360 27 47.9"
+		begin="0s"
+		repeatCount="indefinite" dur="0.75s" additive="sum" />
+</g>
+</svg>

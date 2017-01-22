@@ -26,31 +26,34 @@ var config = {
     bBoxes: [
       { _height: 34, _width: 1020, _x: 0, _y: worldHeight },
       { _height: 34, _width: 300, _x: 0, _y: worldHeight - 100 },
-      { _height: 34, _width: 250, _x: 250, _y: worldHeight - 250 }
+      { _height: 34, _width: 610, _x: 250, _y: worldHeight - 250 }
     ],
   },
   portals: {
     init: function() {
       var self = this;
 
-      self.bBoxes.forEach(function(portal) {
+      self.bBoxes.forEach(function(portal, i) {
 
         var inDom = self._dom.cloneNode();
         inDom.classList = [];
         inDom.setAttribute('x', portal.in.x);
         inDom.setAttribute('y', portal.in.y - self._height);
+        inDom.setAttribute('xlink:href', 'images/portals/portal' + (i + 1) + '.svg');
         svg.prepend(inDom);
 
         var outDom = self._dom.cloneNode();
         outDom.classList = [];
         outDom.setAttribute('x', portal.out.x);
         outDom.setAttribute('y', portal.out.y - self._height);
+        outDom.setAttribute('xlink:href', 'images/portals/portal' + (i + 1) + '.svg');
         svg.prepend(outDom);
       });
     },
     bBoxes: [
-      { in : { x: 430,  y: initHeigh }, out : { x : 10, y: initHeigh - 100 } },
-      { in : { x: 230,  y: initHeigh - 100 }, out : { x : 250, y: initHeigh - 250 } }
+      { in : { x: 600,  y: initHeigh }, out : { x : 10, y: initHeigh - 100 } },
+      { in : { x: 230,  y: initHeigh - 100 }, out : { x : 250, y: initHeigh - 250 } },
+      { in : { x: 800,  y: initHeigh - 250 }, out : { x : 1500, y: initHeigh - 250 } }
     ],
     _dom: document.getElementById('portal'),
     _height: 80
@@ -83,7 +86,7 @@ var config = {
     _bgDom: document.getElementById('background'),
     _dom: document.getElementById('world'),
     _height: worldHeight,
-    _width: 500
+    _width: 1000
   }
 };
 
