@@ -25,8 +25,8 @@ var config = {
     _height: 34,
     bBoxes: [
       { _height: 34, _width: 1020, _x: 0, _y: worldHeight },
-      { _height: 34, _width: 400, _x: 0, _y: worldHeight - 100 },
-      { _height: 34, _width: 300, _x: 50, _y: worldHeight - 250 }
+      { _height: 34, _width: 300, _x: 0, _y: worldHeight - 100 },
+      { _height: 34, _width: 250, _x: 80, _y: worldHeight - 250 }
     ],
   },
   portal: {
@@ -51,6 +51,19 @@ var config = {
     _dom: document.getElementById('portal'),
     _height: 80
   },
+  portal_shadow: {
+    init: function() {
+      var self = this;
+      this._dom.setAttribute('width', self._width);
+
+      svg.onmousemove = function(e) {
+        self._dom.setAttribute('x', e.offsetX - (self._width / 2));
+        self._dom.setAttribute('y', initHeigh - 100);
+      };
+    },
+    _dom: document.getElementById('portal-shadow'),
+    _width: 57
+  },
   world: {
     init: function() {
       this._dom.setAttribute('height', this._height);
@@ -74,6 +87,7 @@ var player = {
     config.portal.init();
     config.floors.init();
     config.world.init();
+    config.portal_shadow.init();
     this._draw();
   },
   step: function(config) {
