@@ -2,27 +2,30 @@ var floorHeight = 20;
 var svg = document.getElementById('world');
 var worldHeight = 500;
 
+var initHeigh = worldHeight - floorHeight;
+
 var config = {
   portal: {
     in: {
       x: 430,
-      y: 400
+      y: initHeigh
     },
     init: function() {
       this._dom.setAttribute('x', this.in.x);
-      this._dom.setAttribute('y', this.in.y);
+      this._dom.setAttribute('y', this.in.y - this._height);
 
       var outDom = this._dom.cloneNode();
       outDom.setAttribute('x', this.out.x);
-      outDom.setAttribute('y', this.out.y);
+      outDom.setAttribute('y', this.out.y - this._height);
 
       svg.appendChild(outDom);
     },
     out: {
       x: 10,
-      y: 400
+      y: initHeigh
     },
-    _dom: document.getElementById('portal')
+    _dom: document.getElementById('portal'),
+    _height: 78
   },
   world: {
     init: function() {
@@ -80,7 +83,7 @@ var player = {
   _stepSize: 3,
   _width: 50,
   _x: 0,
-  _y: worldHeight - floorHeight
+  _y: initHeigh
 };
 
 function init() {
